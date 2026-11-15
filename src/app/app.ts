@@ -1,8 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NgxSpinnerComponent } from 'ngx-spinner';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgxSpinnerComponent,FooterComponent,NavbarComponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
