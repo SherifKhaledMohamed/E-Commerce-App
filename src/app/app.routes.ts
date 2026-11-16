@@ -53,21 +53,21 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'shop/:id',
+    path: 'shop/:slug/:id',
     loadComponent: () =>
       import('./features/shop/pages/shop-details/shop-details.component').then(
         (m) => m.ShopDetailsComponent,
       ),
   },
   {
-    path: 'categories/:id',
+    path: 'categories/:slug/:id',
     loadComponent: () =>
       import('./features/categories/pages/categories-details/categories-details.component').then(
         (m) => m.CategoriesDetailsComponent,
       ),
   },
   {
-    path: 'brands/:id',
+    path: 'brands/:slug/:id',
     loadComponent: () =>
       import('./features/brands/pages/brand-details/brand-details.component').then(
         (m) => m.BrandDetailsComponent,

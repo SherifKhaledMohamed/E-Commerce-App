@@ -1,0 +1,26 @@
+<div class="w-full h-60 linear-green">
+    <div class="container">
+        <div class="flex-col justify-center items-start p-18">
+            <div class="mb-6">
+                <span class="font-light text-white text-lg">Home /
+                    <span class="font-extrabold text-white">
+                        <ng-content select=".section-name"></ng-content>
+                    </span>
+                </span>
+            </div>
+            <div class="flex justify-start items-center gap-4">
+                <div class="w-[64px] h-[64px] rounded-xl bg-white/20 flex justify-center items-center shadow-lg">
+                    <span class="text-white"><ng-content select="i"></ng-content></span>
+                </div>
+                <div class="flex-col text-4xl text-white">
+                    <span class="font-extrabold">
+                        <ng-content select=".section-title"></ng-content>
+                    </span>
+                    <span class="text-lg">
+                        <ng-content select=".section-description"></ng-content>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

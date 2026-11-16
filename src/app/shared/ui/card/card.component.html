@@ -13,7 +13,9 @@
                 class="grid size-9 cursor-pointer place-items-center rounded-full border border-gray-200 bg-white text-secondary shadow-sm transition hover:text-primary">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i>
             </button>
-            <button type="button" aria-label="Quick view"
+            <button type="button" aria-label="Quick view" routerLink="/shop/{{product().slug}}/{{product().id}}"
+                [disabled]="product().quantity <= 0" [class]="{'disabled:bg-gray-300' : product().quantity <= 0 ,
+                        'disabled:cursor-not-allowed' : product().quantity <= 0 }"
                 class="grid size-9 cursor-pointer place-items-center rounded-full border border-gray-200 bg-white text-secondary shadow-sm transition hover:text-primary">
                 <i class="fa-regular fa-eye" aria-hidden="true"></i>
             </button>

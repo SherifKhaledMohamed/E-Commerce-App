@@ -12,8 +12,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withInMemoryScrolling({scrollPositionRestoration:'enabled',anchorScrolling:'enabled'}),withViewTransitions()),
-    provideClientHydration(), importProvidersFrom(NgxSpinnerModule), provideToastr(),
-    provideHttpClient(withInterceptors([errorInterceptor,loadingInterceptor])),
+    provideClientHydration(), 
+    importProvidersFrom(NgxSpinnerModule), 
+    provideToastr(),
+    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
     
   ]
 };

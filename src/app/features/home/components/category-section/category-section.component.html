@@ -1,5 +1,21 @@
 <section>
     <div class="container">
-        <app-section-title title="Shop By " highlight="Category"></app-section-title>
+        <div class="flex justify-between items-center">
+            <app-section-title title="Shop By " highlight="Category"></app-section-title>
+            <a routerLink="/categories" routerLinkActive="" class="text-primary font-semibold">View All categories <i
+                    class="fa-solid fa-arrow-right-long"></i></a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 my-8">
+            @for (category of allCategories(); track category._id) {
+            <div routerLink="/shop/{{category.slug}}/{{category._id}}"
+                class="border rounded-lg border-gray-300 shadow-sm py-2 px-4 flex flex-col justify-center items-center">
+                <div class="w-[80px] h-[80px] rounded-full overflow-hidden bg-orange my-2">
+                    <img class="h-[80px] w-[80px] object-cover" [src]="category.image" [alt]="category.name">
+                </div>
+                <span>{{category.name}}</span>
+            </div>
+            }
+        </div>
     </div>
 </section>

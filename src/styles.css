@@ -27,3 +27,11 @@ body {
 a {
     cursor: pointer;
 }
+
+.linear-green {
+    background: linear-gradient(to bottom, var(--color-primary), #22C55E, #4ADE80);
+}
+
+.linear-purple {
+    background: linear-gradient(to bottom, #7F22FE, #8E51FF, #C27AFF);
+}

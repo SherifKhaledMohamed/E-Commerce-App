@@ -6,7 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CardComponent } from '../../../../shared/ui/card/card.component';
 
 @Component({
-  imports: [SectionTitleComponent,CurrencyPipe,CardComponent],
+  imports: [SectionTitleComponent,CardComponent],
   selector: 'app-product-section',
   styleUrl: './product-section.component.css',
   templateUrl: './product-section.component.html',

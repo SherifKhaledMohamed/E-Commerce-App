@@ -2,7 +2,7 @@
     <div class="container">
         <app-section-title title="Featured " highlight="Products"></app-section-title>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 my-4">
-            @for (product of allProducts(); track product.id) {
+            @for (product of allProducts().slice(0,10); track product.id) {
             <app-card [product]="product"></app-card>
             }
 
