@@ -1,6 +1,16 @@
-<app-section-header>
-    <span class="section-name">Categories</span>
-    <i class="fa-solid fa-layer-group text-4xl"></i>
-    <h3 class="section-title">All Categories</h3>
-    <p class="section-description">Browse our wide range of product categories</p>
-</app-section-header>
+<section>
+    <app-section-header>
+        <span class="section-name">Categories</span>
+        <i class="fa-solid fa-layer-group text-4xl"></i>
+        <h3 class="section-title">All Categories</h3>
+        <p class="section-description">Browse our wide range of product categories</p>
+    </app-section-header>
+
+    <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 my-10 gap-4">
+            @for (category of allCategories(); track category._id) {
+            <app-section-card [cardInput]="category"></app-section-card>
+            }
+        </div>
+    </div>
+</section>

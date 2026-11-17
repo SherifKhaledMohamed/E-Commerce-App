@@ -1,1 +1,19 @@
-<p>categories-details works!</p>
+<section>
+    <app-section-header>
+        <span class="section-name"><span class="font-light">Categories </span>/ {{category().name}}</span>
+        <i class="fa-solid fa-layer-group text-4xl"></i>
+        <h3 class="section-title">{{category().name}}</h3>
+        <p class="section-description">Browse our wide range of products {{category().name}}</p>
+    </app-section-header>
+
+    <div class="container">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 my-10 gap-4 w-full">
+            @for (subCat of allSubCategories(); track subCat._id) {
+            <a routerLink="/shop/{{subCat.slug}}/{{subCat._id}}"
+                class="bg-white border-1 h-20 flex items-center justify-center border-gray-200 hover:border-[var(--color-primary)] hover:scale-y-110 transition-all duration-200 font-extrabold text-2xl shadow-lg rounded-xl">
+                <span class="text-lg">{{subCat.name}}</span>
+            </a>
+            }
+        </div>
+    </div>
+</section>
