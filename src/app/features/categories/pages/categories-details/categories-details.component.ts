@@ -3,10 +3,9 @@ import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { SectionHeaderComponent } from '../../../../shared/ui/section-header/section-header.component';
 import { Category, Subcategory } from '../../../../core/models/product.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { SectionCardComponent } from '../../../../shared/ui/section-card/section-card.component';
 
 @Component({
-  imports: [SectionHeaderComponent, SectionCardComponent, RouterLink],
+  imports: [SectionHeaderComponent, RouterLink],
   selector: 'app-categories-details',
   styleUrl: './categories-details.component.css',
   templateUrl: './categories-details.component.html',

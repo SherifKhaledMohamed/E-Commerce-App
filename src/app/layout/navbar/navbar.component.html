@@ -103,12 +103,20 @@
                 class="flex size-11 items-center justify-center rounded-full text-2xl text-gray-500 hover:bg-gray-100 hover:text-primary">
                 <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
             </a>
-
+            @if(isLogged()) {
+            <a (click)="signOut()"
+                class="ms-4 hidden items-center gap-2 rounded-full bg-primary px-8 py-3 text-lg font-semibold text-white hover:bg-green-700 focus:ring-4 focus:ring-green-300 focus:outline-none xl:inline-flex">
+                <i class="fa-regular fa-user text-base" aria-hidden="true"></i>
+                Sign Out
+            </a>
+            }
+            @else {
             <a routerLink="/login"
                 class="ms-4 hidden items-center gap-2 rounded-full bg-primary px-8 py-3 text-lg font-semibold text-white hover:bg-green-700 focus:ring-4 focus:ring-green-300 focus:outline-none xl:inline-flex">
                 <i class="fa-regular fa-user text-base" aria-hidden="true"></i>
                 Sign In
             </a>
+            }
 
             <button type="button" #menuButton data-drawer-target="mobile-drawer" data-drawer-show="mobile-drawer"
                 data-drawer-placement="right" aria-controls="mobile-drawer" aria-label="Open menu"
@@ -217,7 +225,15 @@
                 </button>
             </div>
         </div>
-
+        @if(isLogged()) {
+        <div class="grid grid-cols-1 gap-3 py-5">
+            <a (click)="signOut()" data-drawer-hide="mobile-drawer" (click)="menuButton.focus()"
+                class="rounded-xl border-2 border-primary bg-primary py-3 text-center text-lg font-semibold text-white hover:bg-green-700">
+                Sign Out
+            </a>
+        </div>
+        }
+        @else {
         <div class="grid grid-cols-2 gap-3 py-5">
             <a routerLink="/login" data-drawer-hide="mobile-drawer" (click)="menuButton.focus()"
                 class="rounded-xl border-2 border-primary bg-primary py-3 text-center text-lg font-semibold text-white hover:bg-green-700">
@@ -228,6 +244,7 @@
                 Sign Up
             </a>
         </div>
+        }
 
         <div class="mb-5 flex items-center gap-4 rounded-xl border border-green-100 bg-green-50 p-4">
             <span

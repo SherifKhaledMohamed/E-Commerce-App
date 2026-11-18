@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { loggedGuard } from './core/guard/logged-guard';
 
 export const routes: Routes = [
   {
@@ -35,11 +36,25 @@ export const routes: Routes = [
   },
   {
     path: 'cart',
+    canActivate:[loggedGuard],
     loadComponent: () =>
       import('./features/cart/pages/cart/cart.component').then((m) => m.CartComponent),
   },
   {
+    path: 'checkout',
+    canActivate:[loggedGuard],
+    loadComponent: () =>
+      import('./features/payment/pages/checkout/checkout.component').then((m) => m.CheckoutComponent),
+  },
+  {
+    path: 'orders',
+    canActivate:[loggedGuard],
+    loadComponent: () =>
+      import('./features/payment/pages/orders/orders.component').then((m) => m.OrdersComponent),
+  },
+  {
     path: 'whishlist',
+    canActivate:[loggedGuard],
     loadComponent: () =>
       import('./features/wishlist/pages/wishlist/wishlist.component').then(
         (m) => m.WishlistComponent,

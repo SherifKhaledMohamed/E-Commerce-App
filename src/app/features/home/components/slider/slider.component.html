@@ -1,9 +1,56 @@
-<section>
-    <div class="h-100 flex items-center item">
-        <div class="w-full px-20 text-white space-y-4">
-            <h2 class="text-3xl">Fresh Products Delivered to your Door</h2>
-            <p>Get 20% off your first order</p>
-            <button class="bg-white text-primary px-10 py-3 rounded cursor-pointer">Shop Now</button>
-        </div>
-    </div>
+<section class="mb-10">
+    <swiper-container class=" mySwiper" navigation="true" [pagination]="{clickable:true}">
+        <swiper-slide>
+            <div class="h-100 flex items-center item">
+                <div class="w-full px-20 text-white space-y-4">
+                    <h2 class="text-3xl font-extrabold">Fresh Products Delivered to your Door</h2>
+                    <p>Get 20% off your first order</p>
+                    <div class="flex flex-col justify-start items-start gap-4 md:flex-row">
+                        <button
+                            class="bg-white text-primary px-10 py-3 min-w-50 border-white border-2 rounded cursor-pointer"
+                            routerLink="/shop">Shop
+                            Now</button>
+                        <button
+                            class="bg-transparent text-white border-white border-2  min-w-50 px-10 py-3 rounded cursor-pointer"
+                            routerLink="/shop">View Deals</button>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+
+        <swiper-slide>
+            <div class="h-100 flex items-center item">
+                <div class="w-full px-20 text-white space-y-4">
+                    <h2 class="text-3xl font-extrabold">Premium Quality Guaranteed</h2>
+                    <p>Fresh from farm to your table</p>
+                    <div class="flex flex-col justify-start items-start gap-4 md:flex-row">
+                        <button
+                            class="bg-white text-primary px-10 py-3 min-w-50 border-white border-2 rounded cursor-pointer"
+                            routerLink="/shop">Shop
+                            Now</button>
+                        <button
+                            class="bg-transparent text-white border-white border-2  min-w-50 px-10 py-3 rounded cursor-pointer"
+                            routerLink="/shop">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+
+        <swiper-slide>
+            <div class="h-100 flex items-center item">
+                <div class="w-full px-20 text-white space-y-4">
+                    <h2 class="text-3xl font-extrabold">Fast & free Delivery</h2>
+                    <p>Same day delivery available</p>
+                    <div class="flex flex-col justify-start items-start gap-4 md:flex-row">
+                        <button
+                            class="bg-white text-primary px-10 py-3 min-w-50 border-white border-2 rounded cursor-pointer"
+                            routerLink="/shop">Order Now</button>
+                        <button
+                            class="bg-transparent text-white border-white border-2  min-w-50 px-10 py-3 rounded cursor-pointer"
+                            routerLink="/shop">Delivery Info</button>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </swiper-container>
 </section>
