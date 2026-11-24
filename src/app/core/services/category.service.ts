@@ -16,6 +16,6 @@ export class CategoryService {
     }
 
     getSubCategories (categoryId:string,limit:number = 10) : Observable<any> {
-        return this.httpClient.get(environment.baseUrl + `/categories/${categoryId}/subcategories?limit=${limit}`);
+        return this.httpClient.get(environment.baseUrl + `categories/${categoryId}/subcategories`);
     }
 }

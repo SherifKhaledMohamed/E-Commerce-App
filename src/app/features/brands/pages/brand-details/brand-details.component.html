@@ -1,1 +1,59 @@
-<p>brand-details works!</p>
+<section class="">
+    <app-section-header class="linear-purple">
+        <span class="section-name">
+            <span class="font-light">
+                <a routerLink="/brands">
+                    Brands
+                </a>
+            </span>
+            <a routerLink="/brans/{{brand().slug}}/{{brand()._id}}">
+                / {{brand().name}}
+            </a>
+        </span>
+        <i class="fa-solid fa-tags text-4xl"></i>
+        <h3 class="section-title">{{brand().name}}</h3>
+        <p class="section-description">Browse our wide range of products {{brand().name}}</p>
+    </app-section-header>
+
+    <div class="container p-10">
+        <a class="ms-5 inline-flex items-center gap-1 text-base text-black hover:text-green-600
+            translate-y-1 transition-all duration-300
+            hover:translate-y-0" routerLink="/brands">⟵ Back To All brands</a>
+        <div class="w-full bg-gray-50 my-10 p-5 rounded-4xl border-2 border-black/10 shadow-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-12">
+                <div class="space-y-4">
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                        <img [src]="brand().image" [alt]="brand().name" class="w-full object-cover" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center items-start gap-6">
+                    <div class="space-y-3">
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">{{brand().name}}</h1>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Slug: <span class="rounded-full px-4 py-2 text-primary bg-primary/10 font-semibold">
+                                {{brand().slug}}
+                            </span>
+                        </p>
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Added: <span class="font-semibold">
+                                {{brand().createdAt | date}}
+                            </span>
+                        </p>
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Added: <span class="font-semibold">
+                                {{brand().updatedAt | date}}
+                            </span>
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

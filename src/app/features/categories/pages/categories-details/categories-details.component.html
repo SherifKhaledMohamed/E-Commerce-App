@@ -1,19 +1,64 @@
-<section>
-    <app-section-header>
-        <span class="section-name"><span class="font-light">Categories </span>/ {{category().name}}</span>
-        <i class="fa-solid fa-layer-group text-4xl"></i>
+<section class="">
+    <app-section-header class="linear-green">
+        <span class="section-name">
+            <span class="font-light">
+                <a routerLink="/categories">
+                    Categories
+                </a>
+            </span>
+            <a routerLink="/categories/{{category().slug}}/{{category()._id}}">
+                / {{category().name}}
+            </a>
+        </span>
+        <i class="text-4xl">
+            <div class="w-16 overflow-hidden p-1">
+                <img class="w-16 p-2 object-cover" [src]="category().image" [alt]="category().name">
+            </div>
+        </i>
         <h3 class="section-title">{{category().name}}</h3>
-        <p class="section-description">Browse our wide range of products {{category().name}}</p>
+        <p class="section-description">Choose a subcategory to browse products</p>
     </app-section-header>
 
-    <div class="container">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 my-10 gap-4 w-full">
+    <div class="container p-10 overflow-hidden">
+        <a class="ms-5 inline-flex items-center gap-1 text-base text-black hover:text-green-600
+            translate-y-1 transition-all duration-300
+            hover:translate-y-0" routerLink="/categories">⟵ Back To All Categories</a>
+        <div class="w-full bg-gray-50 my-10 p-5 rounded-4xl border-2 border-black/10 shadow-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-12">
+                <div class="space-y-4">
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                        <img [src]="category().image" [alt]="category().name" class="w-full object-cover" />
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center items-start gap-6">
+                    <div class="space-y-3">
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">{{category().name}}</h1>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Slug: <span class="rounded-full px-4 py-2 text-primary bg-primary/10 font-semibold">
+                                {{category().slug}}
+                            </span>
+                        </p>
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Added: <span class="font-semibold">
+                                {{category().createdAt | date}}
+                            </span>
+                        </p>
+                        <p class="text-lg text-gray-500 leading-relaxed max-w-md font-light">
+                            Added: <span class="font-semibold">
+                                {{category().updatedAt | date}}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
             @for (subCat of allSubCategories(); track subCat._id) {
-            <a routerLink="/shop/{{subCat.slug}}/{{subCat._id}}"
-                class="bg-white border-1 h-20 flex items-center justify-center border-gray-200 hover:border-[var(--color-primary)] hover:scale-y-110 transition-all duration-200 font-extrabold text-2xl shadow-lg rounded-xl">
-                <span class="text-lg">{{subCat.name}}</span>
-            </a>
+            <app-section-card [cardInput]="subCat"></app-section-card>
             }
         </div>
     </div>
+
 </section>
