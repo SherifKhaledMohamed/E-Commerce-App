@@ -1,1 +1,26 @@
-<p>shop works!</p>
+<section>
+    <app-section-header class="linear-green">
+        <span class="section-name"><a routerLink="/shop"> All Products</a></span>
+        <i class="fa-solid fa-box-open text-4xl"></i>
+        <h3 class="section-title">All Products</h3>
+        <p class="section-description">Explore our complete product collection</p>
+    </app-section-header>
+    <div class="container mt-5">
+        <span class="text-sm">Showing now {{allProducts().length}} products</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 my-4">
+            @for (product of allProducts() | paginate: { id: 'foo',
+            itemsPerPage: pageSize(),
+            currentPage: p(),
+            totalItems: total() } ; track product.id)
+            {
+            <app-card [product]="product"></app-card>
+            }
+
+        </div>
+    </div>
+
+    <div class="flex justify-center mt-6">
+        <pagination-controls id="foo" (pageChange)="pageChanged($event)">
+        </pagination-controls>
+    </div>
+</section>

@@ -24,8 +24,8 @@
                     ariaCurrentWhenActive="page" class="hover:text-primary">Home</a>
             </li>
             <li>
-                <a routerLink="/shop" routerLinkActive="text-primary" ariaCurrentWhenActive="page"
-                    class="hover:text-primary">Shop</a>
+                <a routerLink="/shop" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="text-primary"
+                    ariaCurrentWhenActive="page" class="hover:text-primary">Shop</a>
             </li>
             <li routerLinkActive="[&>button]:text-primary">
                 <button id="categories-button" type="button" data-dropdown-toggle="categories-dropdown"
@@ -42,23 +42,31 @@
                                 Categories</a>
                         </li>
                         <li>
-                            <a routerLink="/shop" class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Men's
-                                Fashion</a>
-                        </li>
-                        <li>
-                            <a routerLink="/shop" class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Women's
+                            <a routerLink="/shop"
+                                [queryParams]="{category:allCategories().find(cat => cat.name.toLocaleLowerCase() === 'men\'s fashion')?._id}"
+                                class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Men's
                                 Fashion</a>
                         </li>
                         <li>
                             <a routerLink="/shop"
+                                [queryParams]="{category:allCategories().find(cat => cat.name.toLocaleLowerCase() === 'women\'s fashion')?._id}"
+                                class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Women's
+                                Fashion</a>
+                        </li>
+                        <li>
+                            <a routerLink="/shop"
+                                [queryParams]="{category:allCategories().find(cat => cat.name.toLocaleLowerCase() === 'electronics')?._id}"
                                 class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Electronics</a>
                         </li>
                         <li>
-                            <a routerLink="/shop" class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Beauty
+                            <a routerLink="/shop"
+                                [queryParams]="{category:allCategories().find(cat => cat.name.toLocaleLowerCase() === 'beauty & health')?._id}"
+                                class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">Beauty
                                 &amp; Health</a>
                         </li>
                         <li>
                             <a routerLink="/shop"
+                                [queryParams]="{category:allCategories().find(cat => cat.name.toLocaleLowerCase() === 'supermarket')?._id}"
                                 class="block px-4 py-2 hover:bg-gray-50 hover:text-primary">SuperMarket</a>
                         </li>
                     </ul>
@@ -165,7 +173,8 @@
                 </a>
             </li>
             <li>
-                <a routerLink="/shop" routerLinkActive="bg-green-50 text-primary" ariaCurrentWhenActive="page"
+                <a routerLink="/shop" [routerLinkActiveOptions]="{exact:true}"
+                    routerLinkActive="bg-green-50 text-primary" ariaCurrentWhenActive="page"
                     data-drawer-hide="mobile-drawer" (click)="menuButton.focus()"
                     class="block rounded-lg px-4 py-3 hover:bg-gray-50 hover:text-primary">
                     Shop

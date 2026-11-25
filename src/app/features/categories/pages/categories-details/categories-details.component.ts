@@ -47,4 +47,6 @@ export class CategoriesDetailsComponent implements OnInit{
       }
     })
   }
+
+  
 }

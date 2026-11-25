@@ -36,3 +36,11 @@ a {
 .linear-purple {
     background: linear-gradient(to bottom, #7F22FE, #8E51FF, #C27AFF);
 }
+
+.ngx-pagination li.current {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    text-align: center;
+}
