@@ -33,7 +33,6 @@ export class BrandDetailsComponent {
     this.brandService.getSpecificBrand(brandId).subscribe({
       next : (res) => {
         this.brand.set(res.data);
-        console.log(res.data)
       }
     })
   }
