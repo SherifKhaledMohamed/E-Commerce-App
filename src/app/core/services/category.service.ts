@@ -14,8 +14,11 @@ export class CategoryService {
     getSpecificCategory (categoryId:string) : Observable<any> {
         return this.httpClient.get(environment.baseUrl + `categories/${categoryId}`);
     }
-
+    
     getSubCategories (categoryId:string,limit:number = 10) : Observable<any> {
         return this.httpClient.get(environment.baseUrl + `categories/${categoryId}/subcategories`);
+    }
+    getSpecificSubcategory (subcategoryId:string) : Observable<any> {
+        return this.httpClient.get(environment.baseUrl + `subcategories//${subcategoryId}`);
     }
 }

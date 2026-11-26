@@ -15,6 +15,7 @@ export class BrandDetailsComponent {
 
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly brandService = inject(BrandService);
+  brandId = signal('');
   brand = signal<Category>({} as Category);
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class BrandDetailsComponent {
 
   getBrand() {
     this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params.get('id'));
+      this.brandId.set(params.get('id')!);
       this.getBrandbyId(params.get('id')!);
     })
   }

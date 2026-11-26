@@ -6,7 +6,20 @@
         <p class="section-description">Explore our complete product collection</p>
     </app-section-header>
     <div class="container mt-5">
-        <span class="text-sm">Showing now {{allProducts().length}} products</span>
+        @if(filterTag() !== '') {
+        <span class="text-sm">
+            <i class="fa-solid fa-filter"></i> Active Filters:
+            <a routerLink="/shop" class="cursor-pointer ">
+                <span
+                    class="rounded-full p-2 text-[#007a55] bg-primary/10 font-semibold text-xs hover:bg-[#a4f4cf] transition-all duration-200">
+                    <i class="fa-solid fa-folder-open"></i>
+                    {{filterTag()}} X
+                </span>
+            </a>
+            <a routerLink="/shop" class="underline cursor-pointer ms-4">Clear All</a>
+        </span>
+        }
+        <span class="text-sm block my-5">Showing now {{allProducts().length}} products</span>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 my-4">
             @for (product of allProducts() | paginate: { id: 'foo',
             itemsPerPage: pageSize(),

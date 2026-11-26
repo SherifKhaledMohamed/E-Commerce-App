@@ -4,10 +4,12 @@ import { SectionHeaderComponent } from '../../../../shared/ui/section-header/sec
 import { Product } from '../../../../core/models/product.interface';
 import { CardComponent } from '../../../../shared/ui/card/card.component';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CategoryService } from '../../../../core/services/category.service';
+import { BrandService } from '../../../../core/services/brand.service';
 
 @Component({
-  imports: [SectionHeaderComponent, CardComponent,NgxPaginationModule],
+  imports: [SectionHeaderComponent, CardComponent, NgxPaginationModule, RouterLink],
   selector: 'app-shop',
   styleUrl: './shop.component.css',
   templateUrl: './shop.component.html',
@@ -15,6 +17,9 @@ import { ActivatedRoute } from '@angular/router';
 export class ShopComponent implements OnInit {
   private readonly shopService = inject(ShopService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly categoryService = inject(CategoryService);
+  private readonly brandService = inject(BrandService);
+  
 
 
   allProducts = signal<Product[]>([]);
@@ -27,9 +32,11 @@ export class ShopComponent implements OnInit {
   subcategoryId = signal<string>('');
   
 
+  filterTag = signal<string>('');
+
+
   ngOnInit(): void {
     this.getQueryParams();
-
   }
 
   getAllProducts(pageNumber:number = 1) {
@@ -53,7 +60,24 @@ export class ShopComponent implements OnInit {
       this.catId.set(params.get('category') ?? '');
       this.brandId.set(params.get('brand') ?? '');
       this.subcategoryId.set(params.get('subcategory') ?? '');
-      console.log(this.subcategoryId())
+      
+
+      if(this.catId()) {
+      this.categoryService.getSpecificCategory(this.catId()).subscribe({
+        next : (res) => {this.filterTag.set(res.data.name); console.log(res.data)}
+      });
+    }
+    else if(this.subcategoryId()) {
+      this.categoryService.getSpecificSubcategory(this.subcategoryId()).subscribe({
+        next : (res) => {this.filterTag.set(res.data.name); console.log(res.data)}
+
+      });
+    }
+    else if(this.brandId()) {
+      this.brandService.getSpecificBrand(this.brandId()).subscribe({next : (res) => {this.filterTag.set(res.data.name); console.log(res.data)}});
+    }
+    else {this.filterTag.set('');}
+
       this.getAllProducts(1);
     });
   }
