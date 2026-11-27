@@ -21,4 +21,7 @@ export class CartService {
     clearAllCartItems():Observable<any> {
         return this.httpClient.delete(environment.baseUrl+'cart');
     }
+    deleteCertainItem(id:string) {
+        return this.httpClient.delete(environment.baseUrl + `cart/${id}`);
+    }
 }

@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
         next: (res) => {
           this.userCart.set(res);
           this.userCartProducts.set(res.data.products)
+          this.cartService.cartItems.set(res.numOfCartItems)
         }
         });
     }
@@ -149,11 +150,21 @@ export class CartComponent implements OnInit {
     }
     this.cartService.cartItems.set(guestCart.length);
     localStorage.setItem('guestCart', JSON.stringify(guestCart));
-    this.toastrService.success('Cart has been updated');
+    this.toastrService.success('Cart Updated Successfully!');
 
     this.loadGuestCart();
     }
 
 
+  }
+
+  deleteProduct(id:string) {
+    if(this.isLogged()) {
+      this.cartService.deleteCertainItem(id).subscribe({
+        next: (res) => {
+          this.getUserCart();
+        }
+      })
+    } 
   }
 }

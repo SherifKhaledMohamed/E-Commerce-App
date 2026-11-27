@@ -1,3 +1,4 @@
+import { ChangepasswordComponent } from './features/auth/pages/changepassword/changepassword.component';
 import { Routes } from '@angular/router';
 import { loggedGuard } from './core/guard/logged-guard';
 
@@ -50,6 +51,12 @@ export const routes: Routes = [
     canActivate:[loggedGuard],
     loadComponent: () =>
       import('./features/payment/pages/orders/orders.component').then((m) => m.OrdersComponent),
+  },
+  {
+    path: 'changepassword',
+    canActivate:[loggedGuard],
+    loadComponent: () =>
+      import('./features/auth/pages/changepassword/changepassword.component').then((m) => m.ChangepasswordComponent),
   },
   {
     path: 'whishlist',
