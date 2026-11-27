@@ -24,4 +24,7 @@ export class AuthService {
     resetPassword(data:object): Observable<any> {
         return this.httpClient.put(environment.baseUrl + 'auth/resetPassword', data)
     }
+    changePassword(data:object): Observable<any> {
+        return this.httpClient.put(environment.baseUrl + 'users/changeMyPassword',data);
+    }
 }

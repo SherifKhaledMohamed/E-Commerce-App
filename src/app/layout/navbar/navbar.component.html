@@ -116,6 +116,25 @@
                 }
             </a>
             @if(isLogged()) {
+
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+                class="inline-flex items-center justify-center text-xl text-[#6a7282] box-border border border-transparent hover:text-primary font-medium leading-5 rounded-base text-sm px-4 py-2.5 "
+                type="button">
+                <i class="fa-regular fa-circle-user"></i>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdown"
+                class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
+                <ul class="p-2 text-sm text-body font-medium" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a routerLink="/changepassword"
+                            class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Change
+                            Password</a>
+                    </li>
+                </ul>
+            </div>
+
             <a (click)="signOut()"
                 class="ms-4 hidden items-center gap-2 rounded-full bg-primary px-8 py-3 text-lg font-semibold text-white hover:bg-green-700 focus:ring-4 focus:ring-green-300 focus:outline-none xl:inline-flex">
                 <i class="fa-regular fa-user text-base" aria-hidden="true"></i>

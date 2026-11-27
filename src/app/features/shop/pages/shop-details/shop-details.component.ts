@@ -7,6 +7,7 @@ import { CartService } from '../../../../core/services/cart.service';
 import { nextTick } from 'process';
 import { ToastrService } from 'ngx-toastr';
 import { count } from 'console';
+import { WishlistService } from '../../../../core/services/wishlist.service';
 
 @Component({
   imports: [CurrencyPipe, RouterLink],
@@ -20,6 +21,7 @@ export class ShopDetailsComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly cartService = inject(CartService);
   private readonly toastrService = inject(ToastrService);
+  private readonly wishlistService = inject(WishlistService);
 
 
   product = signal<Product>({} as Product);
@@ -102,7 +104,12 @@ export class ShopDetailsComponent implements OnInit {
     })
   }
 
-  addToWishlist(productId:string) {
-    
-  }
+  addToWishlist(id:string) {
+  this.wishlistService.addToWishlist({productId:id}).subscribe({
+    next: (res) => {
+      console.log(res);
+      this.toastrService.success('Wishlist has been updated!')
+    }
+  })
+}
 }

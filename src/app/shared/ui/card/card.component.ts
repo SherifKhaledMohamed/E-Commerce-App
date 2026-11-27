@@ -4,6 +4,7 @@ import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../../core/services/cart.service';
+import { WishlistService } from '../../../core/services/wishlist.service';
 
 @Component({
   imports: [CurrencyPipe, RouterLink],
@@ -15,6 +16,8 @@ export class CardComponent {
   product = input.required<Product>();
   private readonly cartService = inject(CartService);
   private readonly toastrService = inject(ToastrService);
+  private readonly wishlistService = inject(WishlistService);
+  
   
 
   roundRating(rating:number):number {
@@ -59,5 +62,13 @@ export class CardComponent {
     localStorage.setItem('guestCart', JSON.stringify(guestCart));
     this.toastrService.success('Item added to your Cart');
   }
+}
+addToWishlist(id:string) {
+  this.wishlistService.addToWishlist({productId:id}).subscribe({
+    next: (res) => {
+      console.log(res);
+      this.toastrService.success('Wishlist has been updated!')
+    }
+  })
 }
 }
