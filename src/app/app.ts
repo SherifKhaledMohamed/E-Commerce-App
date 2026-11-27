@@ -6,6 +6,8 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { register } from 'swiper/element/bundle';
 import { AuthService } from './features/auth/services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
+import { Product } from './core/models/product.interface';
+import { CartService } from './core/services/cart.service';
 
 @Component({
   imports: [RouterOutlet, NgxSpinnerComponent,FooterComponent,NavbarComponent],
@@ -16,6 +18,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class App implements OnInit {
   protected readonly title = signal('e-commerceapp');
   private readonly authService = inject(AuthService);
+  private readonly cartService = inject(CartService);
   private readonly pLATFORM_ID = inject(PLATFORM_ID);
 
   ngOnInit(): void {
@@ -23,8 +26,7 @@ export class App implements OnInit {
       if(localStorage.getItem('token')) {
         this.authService.isLogged.set(true)
       }
-    }
-
     register();
   }
+}
 }

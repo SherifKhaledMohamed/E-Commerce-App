@@ -1,1 +1,92 @@
-<p>checkout works!</p>
+<section>
+    <div class="max-w-6xl py-10 mx-auto">
+        <!-- ? ------------- header information  -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                    <span class="bg-brand-700 text-white w-9 h-9 flex items-center justify-center rounded-md text-lg">
+                        <i class="fa-solid fa-receipt"></i>
+                    </span>
+                    Complete Your Order
+                </h1>
+                <p class="text-gray-500 mt-1">Review your items and complete your purchase</p>
+            </div>
+            <a routerLink="/cart"
+                class="text-brand-600 hover:text-brand-800 font-medium flex items-center gap-2 transition-colors">
+                <i class="fa-solid fa-arrow-left-long"></i>
+                Back to Cart
+            </a>
+        </div>
+
+        <!-- ? ------------- Form   -->
+        <div class="space-y-6">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="p-6">
+                    <form class="space-y-5">
+                        <div>
+
+                            <!-- city  -->
+                            <div>
+                                <label for="city" class="block mb-2 text-sm font-medium text-gray-900">City <span
+                                        class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 inset-s-0 flex items-center ps-3.5 pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-city"></i>
+                                    </div>
+                                    <input type="text" id="city"
+                                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full ps-10 p-3"
+                                        placeholder="e.g. Cairo, Alexandria, Giza" required />
+                                </div>
+                            </div>
+
+                            <!-- Street Address   -->
+
+                            <div>
+                                <label for="address" class="block mb-2 text-sm font-medium text-gray-900">Street Address
+                                    <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 inset-s-0 flex items-start pt-3.5 ps-3.5 pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <textarea id="address" rows="3"
+                                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full ps-10 p-3"
+                                        placeholder="Street name, building number, floor, apartment..."
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <!-- phone  -->
+
+                            <div>
+                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Phone Number
+                                    <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <div
+                                        class="absolute inset-y-0 inset-s-0 flex items-center ps-3.5 pointer-events-none text-gray-400">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <input type="tel" id="phone"
+                                        class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block w-full ps-10 p-3"
+                                        placeholder="01xxxxxxxxx" required />
+                                    <div class="absolute inset-y-0 end-0 flex items-center pe-3 pointer-events-none">
+                                        <span class="text-xs text-gray-400">Egyptian numbers only</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="group cursor-pointer relative flex w-full items-center justify-center gap-2 rounded-xl bg-[#1a8a44] px-6 py-3.5 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#157339] hover:shadow-xl focus:ring-4 focus:ring-green-300 active:scale-[0.98]">
+                                <i
+                                    class="fa-solid fa-shield-halved text-white transition-transform group-hover:scale-110"></i>
+
+                                <span>Proceed to Payment</span>
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

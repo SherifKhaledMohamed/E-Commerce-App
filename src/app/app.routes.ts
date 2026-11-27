@@ -36,7 +36,6 @@ export const routes: Routes = [
   },
   {
     path: 'cart',
-    canActivate:[loggedGuard],
     loadComponent: () =>
       import('./features/cart/pages/cart/cart.component').then((m) => m.CartComponent),
   },
@@ -54,7 +53,6 @@ export const routes: Routes = [
   },
   {
     path: 'whishlist',
-    canActivate:[loggedGuard],
     loadComponent: () =>
       import('./features/wishlist/pages/wishlist/wishlist.component').then(
         (m) => m.WishlistComponent,

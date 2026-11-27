@@ -87,17 +87,17 @@
                     <div class="mb-6"><label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
                         <div class="flex items-center gap-4">
                             <div class="flex items-center border-2 border-gray-200 rounded-lg overflow-hidden">
-                                <button [disabled]="proudctCount() < 2"
-                                    (click)="proudctCount.update((val) => val > 1 ? val - 1 : val)"
+                                <button [disabled]="productCount() < 2"
+                                    (click)="productCount.update((val) => val > 1 ? val - 1 : val)"
                                     class="px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-primary transition disabled:opacity-50 disabled:hover:text-gray-600 disabled:hover:bg-transparent"
                                     disabled="">
                                     ←</button>
                                 <span
                                     class="w-16 text-center border-0 focus:ring-0 focus:outline-none text-lg font-medium p-2">
-                                    {{proudctCount()}}
+                                    {{productCount()}}
                                 </span>
-                                <button [disabled]="proudctCount() === product().quantity"
-                                    (click)="proudctCount.update((val) => val < product().quantity ? val + 1 : val)"
+                                <button [disabled]="productCount() === product().quantity"
+                                    (click)="productCount.update((val) => val < product().quantity ? val + 1 : val)"
                                     class="px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-primary transition disabled:opacity-50 disabled:hover:text-gray-600">
                                     →
                                 </button>

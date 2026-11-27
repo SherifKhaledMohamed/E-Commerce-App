@@ -5,7 +5,8 @@ import { FlowbiteService } from '../../core/services/flowbite.service';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { CategoryService } from '../../core/services/category.service';
-import { Category } from '../../core/models/product.interface';
+import { Category, Product } from '../../core/models/product.interface';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   imports: [RouterLink,RouterLinkActive],
@@ -20,7 +21,9 @@ export class NavbarComponent implements OnInit {
   private readonly categoryService = inject(CategoryService);
   private readonly pLATFORM_ID = inject(PLATFORM_ID);
   private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
   isLogged = computed(() => this.authService.isLogged())
+  cartItems = computed(() => this.cartService.cartItems())
 
   allCategories = signal<Category[]>([]);
 
@@ -30,6 +33,15 @@ export class NavbarComponent implements OnInit {
     });
 
     this.getCategories();
+
+    if(this.isLogged()) {
+      this.cartService.getLoggedUserCart().subscribe({next:(res)=>{this.cartService.cartItems.set(res.numOfCartItems)}}) 
+    }
+    else { 
+    const rawCart = localStorage.getItem('guestCart');
+    const guestCart: Array<{}> = rawCart ? JSON.parse(rawCart) : [];
+      this.cartService.cartItems.set(guestCart.length)
+  }
   }
 
   signOut() {
@@ -37,6 +49,7 @@ export class NavbarComponent implements OnInit {
     if(isPlatformBrowser(this.pLATFORM_ID)) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      this.cartService.cartItems.set(0);
     }
     this.router.navigate(['/login'])
   }

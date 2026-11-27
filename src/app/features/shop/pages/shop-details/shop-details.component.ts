@@ -23,8 +23,8 @@ export class ShopDetailsComponent implements OnInit {
 
 
   product = signal<Product>({} as Product);
-  proudctCount = signal(1);
-  totalPrice = computed(() => this.product().price * this.proudctCount());
+  productCount = signal(1);
+  totalPrice = computed(() => this.product().price * this.productCount());
 
   ngOnInit(): void {
     this.getProduct();
@@ -50,53 +50,52 @@ export class ShopDetailsComponent implements OnInit {
     return Math.round(rating);
   }
 
-  addToCart(productId:string) {
-    if(localStorage.getItem('token')) {
-      this.cartService.addToCart(productId).subscribe({
-        next: (res) => {
-          console.log(res);
-          if(this.proudctCount() > 1 ) {
-            this.updateCartQuantity(productId);
-          }
-          this.toastrService.success('Item added to your Cart');
+  addToCart(productId: string) {
+  if (localStorage.getItem('token')) {
+    this.cartService.addToCart(productId).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.cartService.cartItems.set(res.numOfCartItems);
+        if (this.productCount() > 1) {
+          this.updateCartQuantity(productId);
         }
-      })
-    }
-
-    else {
-      let localStorageCart:Array<{count: number;
+        this.toastrService.success('Item added to your Cart');
+      }
+    });
+  } else {
+    const currentProduct = this.product();
+    const addedCount = this.productCount();
+    const rawCart = localStorage.getItem('guestCart');
+    const guestCart: Array<{
+      count: number;
       price: number;
-      product: Product
-      productId: string;}> = JSON.parse(localStorage.getItem('guestCart')!);
+      product: typeof currentProduct;
+      productId: string;
+    }> = rawCart ? JSON.parse(rawCart) : [];
 
-      if(localStorageCart) {
-        if(localStorageCart.find((item) => item.productId === productId)) {
-          
-        }
+    const existingItem = guestCart.find((item) => item.productId === productId);
+    
 
-        localStorageCart.push({
-          count: this.proudctCount(),
-          price:this.product().price,
-          product:this.product(),
-          productId:this.product()._id, 
-        })
-      }
+    if (existingItem) {
+      existingItem.count = existingItem.count + addedCount;
+      const itemIndex = guestCart.indexOf(existingItem);
 
-      else {
-        localStorage.setItem('guestCart',JSON.stringify(
-          [{
-            count: this.proudctCount(),
-            price:this.product().price,
-            product:this.product(),
-            productId:this.product()._id, 
-          }]
-        ))
-      }
-
+      guestCart.splice(itemIndex,1,existingItem);
+    } else {
+      guestCart.push({
+        count: addedCount,
+        price: currentProduct.price,
+        product: currentProduct,
+        productId: currentProduct._id,
+      });
     }
+    this.cartService.cartItems.set(guestCart.length);
+    localStorage.setItem('guestCart', JSON.stringify(guestCart));
+    this.toastrService.success('Item added to your Cart');
   }
+}
   updateCartQuantity(productId:string) {
-    this.cartService.updateCartQuantities(productId,this.proudctCount()).subscribe({
+    this.cartService.updateCartQuantities(productId,this.productCount()).subscribe({
       next: (res) => {
         console.log(res);
       }

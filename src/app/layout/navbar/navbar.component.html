@@ -108,8 +108,12 @@
                 <i class="fa-regular fa-heart" aria-hidden="true"></i>
             </a>
             <a routerLink="/cart" routerLinkActive="text-primary" aria-label="Cart"
-                class="flex size-11 items-center justify-center rounded-full text-2xl text-gray-500 hover:bg-gray-100 hover:text-primary">
+                class="flex size-11 items-center justify-center rounded-full text-2xl text-gray-500 hover:bg-gray-100 hover:text-primary relative">
                 <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+                @if (cartItems() > 0) {
+                <span
+                    class="bg-danger rounded-full w-[15px] h-[15px] text-white text-center absolute top-0 right-0 text-xs">{{cartItems()}}</span>
+                }
             </a>
             @if(isLogged()) {
             <a (click)="signOut()"

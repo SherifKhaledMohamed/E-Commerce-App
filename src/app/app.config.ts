@@ -7,6 +7,7 @@ import { provideToastr } from 'ngx-toastr';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { errorInterceptor } from './core/interceptors/error-interceptor';
 import { loadingInterceptor } from './core/interceptors/loading-interceptor';
+import { headerInterceptor } from './core/interceptors/header-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(), 
     importProvidersFrom(NgxSpinnerModule), 
     provideToastr(),
-    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor])),
+    provideHttpClient(withInterceptors([loadingInterceptor, errorInterceptor,headerInterceptor])),
     
   ]
 };
